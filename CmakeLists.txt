@@ -1,0 +1,99 @@
+﻿####################################################################################################
+set(PROJECT_NAME CPlusPlus)
+    message(STATUS "PROJECT_NAME environment variable is " ${PROJECT_NAME})
+PROJECT( ${PROJECT_NAME} )
+
+####################################################################################################
+# 工程cmake属相
+# 修改cmake自己添加的工程的文件夹，这里加个小数点，使其排在最上面，不碍眼
+SET_PROPERTY( GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER ".CMakePredefinedTargets" )
+
+set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE)
+
+# 允许使用解决方案文件夹
+OPTION(${PROJECT_NAME}_USE_FOLDERS "Set to ON to generate ${PROJECT_NAME} use solution folders." ON)
+IF   ( ${PROJECT_NAME}_USE_FOLDERS )
+	SET_PROPERTY( GLOBAL PROPERTY USE_FOLDERS ON )
+ENDIF( ${PROJECT_NAME}_USE_FOLDERS )
+
+# 工程中带不带CmakeLists，带的话可以在工程中打开
+#SET( CMAKE_SUPPRESS_REGENERATION TRUE)
+
+CMAKE_MINIMUM_REQUIRED( VERSION 2.8.0 FATAL_ERROR )
+
+# We have some custom .cmake scripts not in the official distribution.
+# Maybe this can be used override existing behavior if needed?
+SET(CMAKE_MODULE_PATH "${${PROJECT_NAME}_SOURCE_DIR}/../CMakeModules;${CMAKE_MODULE_PATH}")
+
+# Include macro utilities here
+INCLUDE(MacroUtils)
+
+
+####################################################################################################
+# 设置编译出的库文件的release debug后缀
+# Installation stuff
+
+SET(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "add a postfix, usually d on windows")
+SET(CMAKE_RELEASE_POSTFIX "" CACHE STRING "add a postfix, usually empty on windows")
+SET(CMAKE_RELWITHDEBINFO_POSTFIX "rd" CACHE STRING "add a postfix, usually empty on windows")
+SET(CMAKE_MINSIZEREL_POSTFIX "s" CACHE STRING "add a postfix, usually empty on windows")
+
+# Set the build postfix extension according to what configuration is being built.
+IF (CMAKE_BUILD_TYPE MATCHES "Release")
+    SET(CMAKE_BUILD_POSTFIX "${CMAKE_RELEASE_POSTFIX}")
+ELSEIF (CMAKE_BUILD_TYPE MATCHES "MinSizeRel")
+    SET(CMAKE_BUILD_POSTFIX "${CMAKE_MINSIZEREL_POSTFIX}")
+ELSEIF(CMAKE_BUILD_TYPE MATCHES "RelWithDebInfo")
+    SET(CMAKE_BUILD_POSTFIX "${CMAKE_RELWITHDEBINFO_POSTFIX}")
+ELSEIF(CMAKE_BUILD_TYPE MATCHES "Debug")
+    SET(CMAKE_BUILD_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
+ELSE()
+    SET(CMAKE_BUILD_POSTFIX "")
+ENDIF()
+
+
+####################################################################################################
+# 设置输出目录
+
+SET(OUTPUT_BINDIR ${PROJECT_BINARY_DIR}/bin)
+MAKE_DIRECTORY(${OUTPUT_BINDIR})
+
+SET(OUTPUT_LIBDIR ${PROJECT_BINARY_DIR}/lib)
+MAKE_DIRECTORY(${OUTPUT_LIBDIR})
+
+# lib lib/release lib/debug
+# dll dll/release dll/debug
+# exe exe/release exe/debug
+
+OPTION( ${PROJECT_NAME}_SEPARATE_OUTPUT "Set to ON to separate dll exe by release debug folder." OFF )
+
+BUILDER_VERSION_GREATER(2 8 0)
+IF(VALID_BUILDER_VERSION)  # If CMake >= 2.8.1
+	FOREACH(CONF ${CMAKE_CONFIGURATION_TYPES})	# For each configuration (Debug, Release, MinSizeRel... and/or anything the user chooses)
+		STRING(TOUPPER "${CONF}" CONF_UC)	# Go uppercase (DEBUG, RELEASE...)
+		
+		IF( ${PROJECT_NAME}_SEPARATE_OUTPUT )
+			STRING(TOLOWER "${CONF}" CONF_LC)	# Go lowercase (debug, release...)
+			SET( SEPARATE_FOLDER ${CONF_LC} )
+		ENDIF( ${PROJECT_NAME}_SEPARATE_OUTPUT )
+
+		MAKE_DIRECTORY(${OUTPUT_BINDIR}/${SEPARATE_FOLDER})
+		MAKE_DIRECTORY(${OUTPUT_BINDIR}/${SEPARATE_FOLDER})
+		SET("CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONF_UC}" "${OUTPUT_LIBDIR}")
+		SET("CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONF_UC}" "${OUTPUT_LIBDIR}/${SEPARATE_FOLDER}")
+		SET("CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONF_UC}" "${OUTPUT_BINDIR}/${SEPARATE_FOLDER}")
+		SET("CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONF_UC}" "${OUTPUT_BINDIR}/${SEPARATE_FOLDER}")
+	ENDFOREACH()
+ENDIF(VALID_BUILDER_VERSION)
+
+####################################################################################################
+# 设置使用Unicode字符集
+OPTION(${PROJECT_NAME}_USE_UNICODE "Set to ON to build ${PROJECT_NAME} use UNICODE." ON)
+IF   ( ${PROJECT_NAME}_USE_UNICODE )
+	ADD_DEFINITIONS( -DUNICODE -D_UNICODE )
+ENDIF( ${PROJECT_NAME}_USE_UNICODE )
+
+# 添加所有子文件夹
+ADD_SUBDIRECTORYS_BY_POSTFIX( "txt" )
+
+# SET(SL_AGGRESSIVE_WARNING_FLAGS /W4 /wd4706 /wd4127 /wd4100)
