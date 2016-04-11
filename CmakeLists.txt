@@ -23,7 +23,7 @@ CMAKE_MINIMUM_REQUIRED( VERSION 2.8.0 FATAL_ERROR )
 
 # We have some custom .cmake scripts not in the official distribution.
 # Maybe this can be used override existing behavior if needed?
-SET(CMAKE_MODULE_PATH "${${PROJECT_NAME}_SOURCE_DIR}/../CMakeModules;${CMAKE_MODULE_PATH}")
+SET(CMAKE_MODULE_PATH "${${PROJECT_NAME}_SOURCE_DIR}/../../CMakeModules;${CMAKE_MODULE_PATH}")
 
 # Include macro utilities here
 INCLUDE(MacroUtils)
