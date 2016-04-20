@@ -1,0 +1,24 @@
+﻿GET_CURRENT_FOLDER( CURRENT_FOLDER )
+
+SET(TARGET_NAME ${CURRENT_FOLDER})
+
+INCLUDE_DIRECTORIES(
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+	E:/EDisk/3rdParty/3rdParty_VS2015_v140_x86/include
+)
+
+LINK_DIRECTORIES(
+	E:/EDisk/3rdParty/3rdParty_VS2015_v140_x86/lib
+)
+
+find_package( zlib )
+find_package( minizip )
+SET( TARGET_ADDED_LIBRARIES_RD zlib minizip )
+
+FILE(GLOB H_FILE_LIST	"include/*.h")
+FILE(GLOB SRC_FILE_LIST	"src/*.c")
+
+SET(TARGET_H	${H_FILE_LIST})
+SET(TARGET_SRC	${SRC_FILE_LIST})
+
+SETUP_PROJECT(${TARGET_NAME})
