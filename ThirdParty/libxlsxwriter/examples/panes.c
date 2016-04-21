@@ -13,6 +13,9 @@ int main() {
     int row;
     int col;
 
+    // 1
+    lxw_format *center;
+
     /* Create a new workbook and add some worksheets. */
     lxw_workbook  *workbook   = workbook_new("panes.xlsx");
 
@@ -30,7 +33,8 @@ int main() {
     format_set_bold(header);
     format_set_border(header, LXW_BORDER_THIN);
 
-    lxw_format *center = workbook_add_format(workbook);
+    // 1
+    center = workbook_add_format(workbook);
     format_set_align(center, LXW_ALIGN_CENTER);
 
 

@@ -12,6 +12,7 @@
 #include "xlsxwriter/utility.h"
 #include "xlsxwriter/packager.h"
 #include "xlsxwriter/hash_table.h"
+#include "xlsxwriter/common.h"
 
 /*
  * Forward declarations.

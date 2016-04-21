@@ -14,17 +14,28 @@ int main() {
     lxw_worksheet      *worksheet  = workbook_add_worksheet(workbook, NULL);
 
     /* Create a properties structure and set some of the fields. */
-    lxw_doc_properties properties = {
-        .title    = "This is an example spreadsheet",
-        .subject  = "With document properties",
-        .author   = "John McNamara",
-        .manager  = "Dr. Heinz Doofenshmirtz",
-        .company  = "of Wolves",
-        .category = "Example spreadsheets",
-        .keywords = "Sample, Example, Properties",
-        .comments = "Created with libxlsxwriter",
-        .status   = "Quo",
-    };
+    //lxw_doc_properties properties = {
+    //    .title    = "This is an example spreadsheet",
+    //    .subject  = "With document properties",
+    //    .author   = "John McNamara",
+    //    .manager  = "Dr. Heinz Doofenshmirtz",
+    //    .company  = "of Wolves",
+    //    .category = "Example spreadsheets",
+    //    .keywords = "Sample, Example, Properties",
+    //    .comments = "Created with libxlsxwriter",
+    //    .status   = "Quo",
+    //};
+	lxw_doc_properties properties = {
+		"This is an example spreadsheet",
+		"With document properties",
+		"John McNamara",
+		"Dr. Heinz Doofenshmirtz",
+		"of Wolves",
+		"Example spreadsheets",
+		"Sample, Example, Properties",
+		"Created with libxlsxwriter",
+		"Quo",
+	};
 
     /* Set the properties in the workbook. */
     workbook_set_properties(workbook, &properties);

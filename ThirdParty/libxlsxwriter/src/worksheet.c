@@ -4650,8 +4650,9 @@ worksheet_insert_image_opt(lxw_worksheet *self,
                            const char *filename,
                            lxw_image_options *user_options)
 {
-    FILE *image_stream;
-    char *short_name;
+	FILE *image_stream;
+	char *short_name;
+	char *short_name_ptr;
     lxw_image_options *options;
 
     if (!filename) {
@@ -4670,7 +4671,18 @@ worksheet_insert_image_opt(lxw_worksheet *self,
     }
 
     /* Get the filename from the full path to add to the Drawing object. */
-    short_name = basename((char *) filename);
+    //short_name = basename((char *) filename);
+
+	short_name_ptr = strrchr(filename, '/');
+	if ( !short_name_ptr )
+	{
+		short_name_ptr = strrchr(filename, '\\');
+	}
+	if ( short_name_ptr )
+	{
+		sprintf(short_name,"%s",short_name_ptr+1);
+	}
+
     if (!short_name) {
         LXW_WARN_FORMAT("worksheet_insert_image()/_opt(): "
                         "couldn't get basename for file: %s", filename);

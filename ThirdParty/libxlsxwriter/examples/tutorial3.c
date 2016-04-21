@@ -18,11 +18,18 @@ struct expense {
     lxw_datetime datetime;
 };
 
+//struct expense expenses[] = {
+//    {"Rent", 1000, { .year = 2013, .month = 1, .day = 13 } },
+//    {"Gas",   100, { .year = 2013, .month = 1, .day = 14 } },
+//    {"Food",  300, { .year = 2013, .month = 1, .day = 16 } },
+//    {"Gym",    50, { .year = 2013, .month = 1, .day = 20 } },
+//};
+
 struct expense expenses[] = {
-    {"Rent", 1000, { .year = 2013, .month = 1, .day = 13 } },
-    {"Gas",   100, { .year = 2013, .month = 1, .day = 14 } },
-    {"Food",  300, { .year = 2013, .month = 1, .day = 16 } },
-    {"Gym",    50, { .year = 2013, .month = 1, .day = 20 } },
+	{"Rent", 1000, { 2013, 1, 13 } },
+	{"Gas",   100, { 2013, 1, 14 } },
+	{"Food",  300, { 2013, 1, 16 } },
+	{"Gym",    50, { 2013, 1, 20 } },
 };
 
 
@@ -34,17 +41,24 @@ int main() {
     int row = 0;
     int col = 0;
     int i;
+	
+	// 1
+	lxw_format *money;
+	// 2
+    lxw_format *date_format;
 
     /* Add a bold format to use to highlight cells. */
     lxw_format *bold = workbook_add_format(workbook);
     format_set_bold(bold);
 
     /* Add a number format for cells with money. */
-    lxw_format *money = workbook_add_format(workbook);
+    // 1
+    money = workbook_add_format(workbook);
     format_set_num_format(money, "$#,##0");
 
     /* Add an Excel date format. */
-    lxw_format *date_format = workbook_add_format(workbook);
+	// 2
+    date_format = workbook_add_format(workbook);
     format_set_num_format(date_format, "mmmm d yyyy");
 
     /* Adjust the column width. */

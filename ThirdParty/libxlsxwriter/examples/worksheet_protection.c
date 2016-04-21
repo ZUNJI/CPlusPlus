@@ -14,9 +14,11 @@ int main() {
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
 
     lxw_format *unlocked = workbook_add_format(workbook);
-    format_set_unlocked(unlocked);
 
     lxw_format *hidden = workbook_add_format(workbook);
+
+	format_set_unlocked(unlocked);
+
     format_set_hidden(hidden);
 
     /* Widen the first column to make the text clearer. */

@@ -39,12 +39,35 @@ int main() {
 
     char preview[] = "Select Print Preview to see the header and footer";
 
+	// 1
+	lxw_worksheet *worksheet1 = workbook_add_worksheet(workbook, "Simple");
+	char header1[] = "&CHere is some centred text.";
+	char footer1[] = "&LHere is some left aligned text.";
+
+	// 2
+	lxw_worksheet *worksheet2 = workbook_add_worksheet(workbook, "Variables");
+	char header2[] = "&LPage &P of &N" "&CFilename: &F" "&RSheetname: &A";
+	char footer2[] = "&LCurrent date: &D" "&RCurrent time: &T";
+	lxw_row_t breaks[] = {20, 0};
+
+	// 3
+	lxw_worksheet *worksheet3 = workbook_add_worksheet(workbook, "Mixed fonts");
+	char header3[] = "&C&\"Courier New,Bold\"Hello &\"Arial,Italic\"World";
+	char footer3[] = "&C&\"Symbol\"e&\"Arial\" = mc&X2";
+
+	// 4
+	lxw_worksheet *worksheet4 = workbook_add_worksheet(workbook, "Word wrap");
+	char header4[] = "&CHeading 1\nHeading 2";
+
+	// 5
+	lxw_worksheet *worksheet5 = workbook_add_worksheet(workbook, "Ampersand");
+	char header5[] = "&CCuriouser && Curiouser - Attorneys at Law";
+
+
     /*
      * A simple example to start
      */
-    lxw_worksheet *worksheet1 = workbook_add_worksheet(workbook, "Simple");
-    char header1[] = "&CHere is some centred text.";
-    char footer1[] = "&LHere is some left aligned text.";
+	// 1
 
     worksheet_set_header(worksheet1, header1);
     worksheet_set_footer(worksheet1, footer1);
@@ -56,10 +79,7 @@ int main() {
     /*
      * This is an example of some of the header/footer variables.
      */
-    lxw_worksheet *worksheet2 = workbook_add_worksheet(workbook, "Variables");
-    char header2[] = "&LPage &P of &N" "&CFilename: &F" "&RSheetname: &A";
-    char footer2[] = "&LCurrent date: &D" "&RCurrent time: &T";
-    lxw_row_t breaks[] = {20, 0};
+	// 2
 
     worksheet_set_header(worksheet2, header2);
     worksheet_set_footer(worksheet2, footer2);
@@ -74,9 +94,7 @@ int main() {
     /*
      * This example shows how to use more than one font.
      */
-    lxw_worksheet *worksheet3 = workbook_add_worksheet(workbook, "Mixed fonts");
-    char header3[] = "&C&\"Courier New,Bold\"Hello &\"Arial,Italic\"World";
-    char footer3[] = "&C&\"Symbol\"e&\"Arial\" = mc&X2";
+	// 3
 
     worksheet_set_header(worksheet3, header3);
     worksheet_set_footer(worksheet3, footer3);
@@ -88,8 +106,7 @@ int main() {
     /*
      * Example of line wrapping.
      */
-    lxw_worksheet *worksheet4 = workbook_add_worksheet(workbook, "Word wrap");
-    char header4[] = "&CHeading 1\nHeading 2";
+	// 4
 
     worksheet_set_header(worksheet4, header4);
 
@@ -100,8 +117,7 @@ int main() {
     /*
      * Example of inserting a literal ampersand &
      */
-    lxw_worksheet *worksheet5 = workbook_add_worksheet(workbook, "Ampersand");
-    char header5[] = "&CCuriouser && Curiouser - Attorneys at Law";
+	// 5
 
     worksheet_set_header(worksheet5, header5);
 

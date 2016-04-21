@@ -78,7 +78,7 @@ enum lxw_boolean {
 #endif
 
 #ifdef HAS_SNPRINTF
-#define lxw_snprintf snprintf
+#define lxw_snprintf _snprintf
 #else
 #define lxw_snprintf __builtin_snprintf
 #endif

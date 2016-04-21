@@ -34,12 +34,16 @@ int main() {
     int col = 0;
     int i;
 
+    // 1
+    lxw_format *money;
+
     /* Add a bold format to use to highlight cells. */
     lxw_format *bold = workbook_add_format(workbook);
     format_set_bold(bold);
 
     /* Add a number format for cells with money. */
-    lxw_format *money = workbook_add_format(workbook);
+    // 1
+    money = workbook_add_format(workbook);
     format_set_num_format(money, "$#,##0");
 
     /* Write some data header. */

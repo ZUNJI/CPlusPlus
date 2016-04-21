@@ -14,9 +14,6 @@ int main() {
     lxw_workbook  *workbook  = workbook_new("format_num_format.xlsx");
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
 
-    /* Widen the first column to make the text clearer. */
-    worksheet_set_column(worksheet, 0, 0, 30, NULL);
-
     /* Add some formats. */
     lxw_format    *format01   = workbook_add_format(workbook);
     lxw_format    *format02   = workbook_add_format(workbook);
@@ -29,6 +26,9 @@ int main() {
     lxw_format    *format09   = workbook_add_format(workbook);
     lxw_format    *format10   = workbook_add_format(workbook);
     lxw_format    *format11   = workbook_add_format(workbook);
+
+    /* Widen the first column to make the text clearer. */
+    worksheet_set_column(worksheet, 0, 0, 30, NULL);
 
     /* Set some example number formats. */
     format_set_num_format(format01, "0.000");

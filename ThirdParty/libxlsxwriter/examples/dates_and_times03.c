@@ -13,7 +13,8 @@ int main() {
     lxw_datetime datetime = {2013, 1, 23, 12, 30, 5.123};
     uint32_t 	 row = 0;
     uint16_t 	 col = 0;
-    int          i;
+	int          i;
+	lxw_format *format;
 
     /* Examples date and time formats. In the output file compare how changing
      * the format strings changes the appearance of the date.
@@ -55,7 +56,7 @@ int main() {
         row++;
 
         /* Create a format for the date or time.*/
-        lxw_format *format  = workbook_add_format(workbook);
+        format  = workbook_add_format(workbook);
         format_set_num_format(format, date_formats[i]);
         format_set_align(format, LXW_ALIGN_LEFT);
 

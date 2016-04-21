@@ -18,6 +18,8 @@ int main() {
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
     lxw_row_t row;
 
+    lxw_row_col_options options = { 1 };
+
     /* Write some data. */
     worksheet_write_string(worksheet, 0, 3, "Some hidden columns.", NULL);
     worksheet_write_string(worksheet, 7, 0, "Some hidden rows.",    NULL);
@@ -31,7 +33,7 @@ int main() {
         worksheet_set_row(worksheet, row, 15, NULL);
 
     /* Columns can be hidden explicitly. This doesn't increase the file size. */
-    lxw_row_col_options options = {.hidden = 1};
+    //lxw_row_col_options options = {.hidden = 1};
     worksheet_set_column_opt(worksheet, COLS("G:XFD"), 8.43, NULL, &options);
 
     workbook_close(workbook);
