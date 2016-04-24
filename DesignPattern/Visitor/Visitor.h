@@ -17,7 +17,6 @@ public:
 	virtual void VisitConcreteElement( ConcreteElementB* elmB ) = 0;
 protected:
 	Visitor();
-private:
 };
 
 class ConcreteVisitorA :public Visitor
@@ -31,8 +30,6 @@ public:
 	// self
 	virtual void VisitConcreteElement( ConcreteElementA* elmA );
 	virtual void VisitConcreteElement( ConcreteElementB* elmB );
-protected:
-private:
 };
 
 class ConcreteVisitorB :public Visitor
@@ -46,7 +43,5 @@ public:
 	// self
 	virtual void VisitConcreteElement( ConcreteElementA* elmA );
 	virtual void VisitConcreteElement( ConcreteElementB* elmB );
-protected:
-private:
 };
 #endif //~_VISITOR_H_

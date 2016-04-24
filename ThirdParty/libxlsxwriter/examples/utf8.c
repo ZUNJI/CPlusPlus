@@ -14,8 +14,7 @@ int main() {
     lxw_workbook  *workbook  = workbook_new("utf8.xlsx");
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
 
-	worksheet_write_string(worksheet, 2, 1, "Это фраза на русском!", NULL);
-	worksheet_write_string(worksheet, 2, 2, "曼珠菩提引三生！", NULL);
+    worksheet_write_string(worksheet, 2, 1, "Это фраза на русском!", NULL);
 
     return workbook_close(workbook);
 }
