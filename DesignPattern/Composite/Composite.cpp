@@ -1,5 +1,7 @@
 #include "Composite.h"
 
+#include <iostream>
+
 Composite::Composite() :
 	composite()
 {
@@ -17,9 +19,13 @@ Component* Composite::GetComponent()
 
 void Composite::Operation()
 {
+	std::cout << "type: Composite name: " << _name << std::endl;
+
 	for ( auto it = composite.begin(); it != composite.end(); it++ )
 	{
+		std::cout << "child: ";
 		( *it )->Operation();
+		//std::cout << std::endl;
 	}
 }
 
