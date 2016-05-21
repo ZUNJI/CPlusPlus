@@ -21,7 +21,7 @@ void Composite::Operation()
 {
 	std::cout << "type: Composite name: " << _name << std::endl;
 
-	for ( auto it = composite.begin(); it != composite.end(); it++ )
+	for ( std::vector<Component*>::iterator it = composite.begin(); it != composite.end(); it++ )
 	{
 		( *it )->Operation();
 		//std::cout << std::endl;
@@ -35,7 +35,7 @@ void Composite::Add( Component* component )
 
 void Composite::Remove( Component* component )
 {
-	for ( auto it = composite.begin(); it != composite.end(); it++ )
+	for ( std::vector<Component*>::iterator it = composite.begin(); it != composite.end(); it++ )
 	{
 		if ( *it == component )
 		{
@@ -53,7 +53,7 @@ Component* Composite::GetChild( int index )
 
 void Composite::traverse( Visitor& visitor )
 {
-	for ( auto it = composite.begin(); it != composite.end(); it++ )
+	for ( std::vector<Component*>::iterator it = composite.begin(); it != composite.end(); it++ )
 	{
 		(*it)->accept( visitor );
 	}

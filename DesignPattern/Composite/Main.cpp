@@ -13,7 +13,7 @@ std::string getTab( int numTab )
 
 	for ( int num = 1; num < numTab; num++ )
 	{
-		result += "\t";
+		result += "    ";
 	}
 
 	return result;
@@ -25,13 +25,13 @@ std::string getTab2( int numTab )
 
 	for ( int num = 1; num < numTab; num++ )
 	{
-		if ( num == 1 )
+		if ( num == numTab - 1 )
 		{
 			result += "|---";
 		}
 		else
 		{
-			result += "\t";
+			result += "|   ";
 		}
 	}
 
