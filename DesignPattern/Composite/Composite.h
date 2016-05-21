@@ -17,6 +17,10 @@ public:
 	virtual void Remove( Component* component );
 	virtual Component* GetChild( int index );
 
+#ifdef UseVisitor
+	virtual void traverse( Visitor& visitor );
+#endif // UseVisitor
+
 private:
 	std::vector<Component*> composite;
 };

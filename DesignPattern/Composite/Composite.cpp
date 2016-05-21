@@ -23,7 +23,6 @@ void Composite::Operation()
 
 	for ( auto it = composite.begin(); it != composite.end(); it++ )
 	{
-		std::cout << "child: ";
 		( *it )->Operation();
 		//std::cout << std::endl;
 	}
@@ -50,4 +49,12 @@ Component* Composite::GetChild( int index )
 {
 	std::vector<Component*>::iterator it = composite.begin() + index;
 	return *it;
+}
+
+void Composite::traverse( Visitor& visitor )
+{
+	for ( auto it = composite.begin(); it != composite.end(); it++ )
+	{
+		(*it)->accept( visitor );
+	}
 }
