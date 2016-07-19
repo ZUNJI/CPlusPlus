@@ -175,6 +175,14 @@ cellContent WorkBook::GetNextCell(void)
 	return content;
 }
 
+void WorkBook::GetSheetRowCol(uint32_t workSheetIndex,uint32_t& row, uint32_t& col)
+{
+	OpenSheet(workSheetIndex);
+
+	row = activeWorkSheet->rows.lastrow + 1;
+	col = activeWorkSheet->rows.lastcol + 1;
+}
+
 cellContent WorkBook::GetCell(uint32_t workSheetIndex, uint16_t row, uint16_t col)
 {
 	cellContent content;

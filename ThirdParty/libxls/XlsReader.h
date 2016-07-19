@@ -100,6 +100,8 @@ namespace xls
 		xlsString			GetSummarySubject(void) const;
 		xlsString			GetSummaryTitle(void) const;
 
+		void				GetSheetRowCol(uint32_t workSheetIndex,uint32_t& row, uint32_t& col);
+
 		cellContent			GetCell(uint32_t workSheetIndex, uint16_t row, uint16_t col);			// uses 1 based indexing!
 		cellContent			GetCell(uint32_t workSheetIndex, uint16_t row, const char *colStr);		// "A"...."Z" "AA"..."ZZ"
 

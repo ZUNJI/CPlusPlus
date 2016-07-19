@@ -41,8 +41,10 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-//#warning Provide a hard coded file path
-	string s = string("xls.xls");
+	//#warning Provide a hard coded file path
+	//string s = string("D:\WorkSpace\ProjectsBuild\CPlusPlus\trunk\bin\xls.xls");
+	string s = string("D:\\WorkSpace\\ProjectsBuild\\CPlusPlus\\trunk\\bin\\xls.xls");
+	//string s = string("D:/WorkSpace/ProjectsBuild/CPlusPlus/trunk/bin/xls.xls");
 	WorkBook foo(s);
 	
 	cellContent cell = foo.GetCell(0, 1, 2);
