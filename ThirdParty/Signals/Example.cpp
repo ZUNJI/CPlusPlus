@@ -73,9 +73,23 @@ void Global( void )
 
 int main()
 {
+#if 0
+
 	Label l;
 	Label2 l2;
 	Button b;
+
+#define Connect2( src, signal, dest, slot ) ( src )->signal.Connect( dest, &slot )
+	Connect2( &b, update1, &l, Label::Update1 ); // we could do QT style with a macro
+
+	( &b )->update1( 1 );
+
+#else
+
+	Label l;
+	Label2 l2;
+	Button b;
+	Button* c = new Button;
 	
 	// Test plain delegate
 	Delegate1< int > delegate;
@@ -89,8 +103,12 @@ int main()
 	b.update0.Connect( &Global ); // global function
 	b.update0.Connect( &Label::Static ); // static method
 
-	#define Connect( a, signal, b, slot ) a.signal.Connect( &b, &slot )
+	#define Connect( a, signal, b, slot ) (a).signal.Connect( &b, &slot )
 	Connect( b, update1, l, Label::Update1 ); // we could do QT style with a macro
+
+	Connect( *c, update1, l, Label::Update1 );
+	c->ClickButton(); // emit signals
+	delete c;
 	
 	b.ClickButton(); // emit signals
 	
@@ -101,4 +119,5 @@ int main()
 	b.update0.Disconnect( &Global );
 	
 	b.ClickButton(); // emit signals again, shouldn't see disconnected slots firing
+#endif
 }
