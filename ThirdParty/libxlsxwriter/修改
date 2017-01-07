@@ -1,3 +1,6 @@
-1¡¢cÓïÑÔĞèÒª½«±äÁ¿µÄÉùÃ÷È«²¿·Åµ½º¯Êı¿éµÄ¿ªÊ¼
-2¡¢error LNK2001: ÎŞ·¨½âÎöµÄÍâ²¿·ûºÅ _snprintf
-	·½·¨£º½«snprintf¸Ä³É"_snprintf" 
+1ã€cè¯­è¨€éœ€è¦å°†å˜é‡çš„å£°æ˜å…¨éƒ¨æ”¾åˆ°å‡½æ•°å—çš„å¼€å§‹
+2ã€error LNK2001: æ— æ³•è§£æçš„å¤–éƒ¨ç¬¦å· _snprintf
+	æ–¹æ³•ï¼šå°†snprintfæ”¹æˆ"_snprintf" 
+
+æŠ¥é”™ï¼šPara5.obj : error LNK2001: æ— æ³•è§£æçš„å¤–éƒ¨ç¬¦å· "public: void __thiscall CPara5::OnBnClickedButton5(void)" (?OnBnClickedButton5@CPara5@@QAEXXZ)
+è§£å†³ï¼šå› ä¸ºå¤´æ–‡ä»¶å†™äº†è¿™ä¸ªå‡½æ•°ï¼Œä½†æ˜¯cppé‡Œæ²¡æœ‰å®ç°
